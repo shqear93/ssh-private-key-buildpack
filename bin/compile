@@ -21,8 +21,6 @@ if [ "$ssh_key" != "" ]; then
 	ln -s "$1/.ssh" "$HOME/.ssh"
 	echo "$ssh_key" | base64 --decode > "$HOME/.ssh/id_rsa"
 
-	cat "$HOME/.ssh/id_rsa"
-
 	IFS=',' read -ra HOST <<< "$ssh_hosts"
 	for i in "${HOST[@]}"; do
 		ssh -oStrictHostKeyChecking=no -T $i 2>&1 | indent
